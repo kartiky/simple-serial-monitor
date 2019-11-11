@@ -54,9 +54,11 @@ with serial.Serial(serial_prefix + sys.argv[1], baud, timeout=1) as ser:
             # dont do anything..
         except serial.SerialException:
             print("Monitor: Disconnected (Serial exception)")
+            serial.close()
             sys.exit(1)
         except IOError:
             print("Monitor: Disconnected (I/O Error)")
+            serial.close()
             sys.exit(1)
         except KeyboardInterrupt:
             print("Monitor: Keyboard Interrupt. Exiting Now...")
